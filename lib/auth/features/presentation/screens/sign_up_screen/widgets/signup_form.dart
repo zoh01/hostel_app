@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hostel_app/api_services/api_calls.dart';
 import 'package:hostel_app/utils/helpers/helper_functions.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
@@ -24,6 +25,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final emailController = TextEditingController();
   final phoneNumberController = TextEditingController();
   final passwordController = TextEditingController();
+  ApiCall apiCall = ApiCall();
 
   String? selectedBlock;
   String? selectedRoom;
@@ -226,7 +228,9 @@ class _SignUpFormState extends State<SignUpForm> {
             controller: emailController,
             validator: (lara) {
               if (lara!.isEmpty) {
-                return 'Fill empty field';
+                return 'Email is required';
+              } else if (!emailRegex.hasMatch(lara)) {
+                return 'Invalid email address';
               }
               return null;
             },
@@ -280,10 +284,11 @@ class _SignUpFormState extends State<SignUpForm> {
             keyboardType: TextInputType.phone,
             initialCountryCode: 'NG',
             style: TextStyle(
-                color: dark ? Colors.white : Colors.black,
-                fontFamily: 'Poppins',
-                fontSize: 17,
-                fontWeight: FontWeight.normal,),
+              color: dark ? Colors.white : Colors.black,
+              fontFamily: 'Poppins',
+              fontSize: 17,
+              fontWeight: FontWeight.normal,
+            ),
             decoration: InputDecoration(
                 filled: true,
                 fillColor: dark ? ZohColors.darkContainer : Colors.white54,
@@ -345,8 +350,9 @@ class _SignUpFormState extends State<SignUpForm> {
                 fillColor: dark ? ZohColors.darkContainer : Colors.white54,
                 hintText: 'Enter Password',
                 focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: dark ? Colors.white : Colors.black,),
+                    borderSide: BorderSide(
+                      color: dark ? Colors.white : Colors.black,
+                    ),
                     borderRadius:
                         const BorderRadius.all(Radius.circular(15.0))),
                 border: OutlineInputBorder(
@@ -388,12 +394,13 @@ class _SignUpFormState extends State<SignUpForm> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: ZohSizes.iconXs, right: ZohSizes.iconXs),
+                    padding: const EdgeInsets.only(
+                        left: ZohSizes.iconXs, right: ZohSizes.iconXs),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text('Block No.'),
-                        DropdownButton(
+                        DropdownButton<String>(
                           dropdownColor: ZohColors.darkGrey,
                           borderRadius: BorderRadius.circular(15),
                           underline: const SizedBox(),
@@ -407,8 +414,10 @@ class _SignUpFormState extends State<SignUpForm> {
                             );
                           },
                           items: blockOptions.map((String block) {
-                            return DropdownMenuItem(
-                                value: block, child: Text(block));
+                            return DropdownMenuItem<String>(
+                              value: block,
+                              child: Text(block),
+                            );
                           }).toList(),
                         ),
                       ],
@@ -416,9 +425,9 @@ class _SignUpFormState extends State<SignUpForm> {
                   ),
                 ),
               ),
-
-              const SizedBox(width: ZohSizes.sm,),
-
+              const SizedBox(
+                width: ZohSizes.sm,
+              ),
               Expanded(
                 child: Container(
                   decoration: ShapeDecoration(
@@ -429,7 +438,8 @@ class _SignUpFormState extends State<SignUpForm> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: ZohSizes.iconXs, right: ZohSizes.iconXs),
+                    padding: const EdgeInsets.only(
+                        left: ZohSizes.iconXs, right: ZohSizes.iconXs),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -446,9 +456,10 @@ class _SignUpFormState extends State<SignUpForm> {
                               },
                             );
                           },
-                          items:
-                              (selectedBlock == "A" ? roomOptionsA : roomOptionsB)
-                                  .map((String room) {
+                          items: (selectedBlock == "A"
+                                  ? roomOptionsA
+                                  : roomOptionsB)
+                              .map((String room) {
                             return DropdownMenuItem<String>(
                               value: room,
                               child: Text(room),
@@ -473,7 +484,19 @@ class _SignUpFormState extends State<SignUpForm> {
               onPressed: () {
                 print(selectedBlock);
                 print(selectedRoom);
-                if (_formKey.currentState!.validate()) {}
+                if (_formKey.currentState!.validate()) {
+                  apiCall.registerStudent(
+                    context,
+                    userNameController.text,
+                    firstnameController.text,
+                    lastNameController.text,
+                    phoneNumberController.text,
+                    selectedBlock ?? "",
+                    selectedRoom ?? "",
+                    emailController.text,
+                    passwordController.text,
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: ZohColors.primaryColor,
@@ -518,4 +541,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
     );
   }
+
+  final emailRegex =
+      RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)*(\.[a-z]{2,})$');
 }

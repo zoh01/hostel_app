@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hostel_app/api_services/api_calls.dart';
+import 'package:hostel_app/models/staff_info_model.dart';
 
 import '../../../../../../../../utils/constants/colors.dart';
 import '../../../../../../../../utils/constants/image_string.dart';
@@ -8,23 +10,20 @@ import '../../../../../../../../utils/device/device_utilities.dart';
 import '../../../../../../../../utils/helpers/helper_functions.dart';
 
 
-class StaffContainer extends StatelessWidget {
-  final String title;
-  final String firstName;
-  final String lastName;
-  final String email;
-  final String phoneNo;
-  final void Function()? onTap;
+class StaffContainer extends StatefulWidget {
+  final Result staff;
 
   const StaffContainer({
-    required this.title,
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.phoneNo,
-    required this.onTap,
+    required this.staff,
     super.key,
   });
+
+  @override
+  State<StaffContainer> createState() => _StaffContainerState();
+}
+
+class _StaffContainerState extends State<StaffContainer> {
+  ApiCall apiCall = ApiCall();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +55,7 @@ class StaffContainer extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      title,
+                      '${widget.staff.jobRole}',
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                           fontFamily: 'IBM_Plex_Sans',
@@ -73,7 +72,7 @@ class StaffContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'First Name: $firstName',
+                    'First Name: ${widget.staff.firstName}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -82,7 +81,7 @@ class StaffContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Last Name: $lastName',
+                    'Last Name: ${widget.staff.lastName}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -91,7 +90,7 @@ class StaffContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Email: $email',
+                    'Email: ${widget.staff.emailId}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -100,7 +99,7 @@ class StaffContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Phone No: $phoneNo',
+                    'Phone No: ${widget.staff.phoneNumber}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontFamily: 'Poppins',
@@ -117,7 +116,9 @@ class StaffContainer extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: onTap,
+                  onPressed: () {
+                    apiCall.deleteStaff(context, widget.staff.emailId);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                     textStyle: const TextStyle(fontSize: 20),

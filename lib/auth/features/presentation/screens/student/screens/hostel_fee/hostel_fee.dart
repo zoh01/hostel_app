@@ -8,7 +8,24 @@ import '../../../../../../../utils/constants/colors.dart';
 import '../../../../../../../utils/constants/sizes.dart';
 
 class HostelFee extends StatelessWidget {
-  const HostelFee({super.key});
+  String blockNumber;
+  String roomNumber;
+  String maintenanceCharge;
+  String parkingCharge;
+  String waterCharge;
+  String roomCharge;
+  String totalCharge;
+
+  HostelFee({
+    required this.blockNumber,
+    required this.roomNumber,
+    required this.maintenanceCharge,
+    required this.parkingCharge,
+    required this.waterCharge,
+    required this.roomCharge,
+    required this.totalCharge,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +61,9 @@ class HostelFee extends StatelessWidget {
                   ),
                   height: ZohDeviceUtils.getScreenHeight() * .2,
                 ),
-                const SizedBox(height: ZohSizes.spaceBtwItems,),
+                const SizedBox(
+                  height: ZohSizes.spaceBtwItems,
+                ),
                 Container(
                   width: double.infinity,
                   decoration: ShapeDecoration(
@@ -66,7 +85,9 @@ class HostelFee extends StatelessWidget {
                               fontSize: ZohSizes.spaceBtwZoh,
                               fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(height: ZohSizes.spaceBtwZoh,),
+                        const SizedBox(
+                          height: ZohSizes.spaceBtwZoh,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -79,7 +100,7 @@ class HostelFee extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              'B',
+                              blockNumber,
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 17,
@@ -88,8 +109,9 @@ class HostelFee extends StatelessWidget {
                             ),
                           ],
                         ),
-
-                        const SizedBox(height: ZohSizes.sm,),
+                        const SizedBox(
+                          height: ZohSizes.sm,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -102,7 +124,7 @@ class HostelFee extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              '202',
+                              roomNumber,
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 17,
@@ -111,8 +133,9 @@ class HostelFee extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height:  ZohSizes.md,),
-
+                        const SizedBox(
+                          height: ZohSizes.md,
+                        ),
                         const Text(
                           'Payment Details',
                           style: TextStyle(
@@ -120,8 +143,9 @@ class HostelFee extends StatelessWidget {
                               fontSize: ZohSizes.spaceBtwZoh,
                               fontWeight: FontWeight.bold),
                         ),
-
-                        const SizedBox(height: ZohSizes.spaceBtwZoh,),
+                        const SizedBox(
+                          height: ZohSizes.spaceBtwZoh,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -136,9 +160,11 @@ class HostelFee extends StatelessWidget {
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
-                            const SizedBox(width: ZohSizes.md,),
+                            const SizedBox(
+                              width: ZohSizes.md,
+                            ),
                             Text(
-                              '# 5,000',
+                              "#$maintenanceCharge",
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 17,
@@ -147,7 +173,9 @@ class HostelFee extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height:  ZohSizes.md,),
+                        const SizedBox(
+                          height: ZohSizes.md,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -162,9 +190,11 @@ class HostelFee extends StatelessWidget {
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
-                            const SizedBox(width: ZohSizes.md,),
+                            const SizedBox(
+                              width: ZohSizes.md,
+                            ),
                             Text(
-                              '#3 000',
+                              "#$parkingCharge",
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 17,
@@ -173,7 +203,9 @@ class HostelFee extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height:  ZohSizes.md,),
+                        const SizedBox(
+                          height: ZohSizes.md,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -188,9 +220,11 @@ class HostelFee extends StatelessWidget {
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
-                            const SizedBox(width: ZohSizes.md,),
+                            const SizedBox(
+                              width: ZohSizes.md,
+                            ),
                             Text(
-                              '# 10,000',
+                              "#$waterCharge",
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 17,
@@ -199,7 +233,9 @@ class HostelFee extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height:  ZohSizes.md,),
+                        const SizedBox(
+                          height: ZohSizes.md,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -214,9 +250,11 @@ class HostelFee extends StatelessWidget {
                                     fontWeight: FontWeight.bold),
                               ),
                             ),
-                            SizedBox(width: ZohSizes.md,),
+                            const SizedBox(
+                              width: ZohSizes.md,
+                            ),
                             Text(
-                              '# 350,000',
+                              "#$roomCharge",
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 17,
@@ -225,14 +263,15 @@ class HostelFee extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height:  ZohSizes.md,),
-
+                        const SizedBox(
+                          height: ZohSizes.md,
+                        ),
                         const Divider(
                           color: Colors.grey,
                         ),
-
-                        const SizedBox(height:  ZohSizes.md,),
-
+                        const SizedBox(
+                          height: ZohSizes.md,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -248,7 +287,7 @@ class HostelFee extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              '# 368,000',
+                              "#$totalCharge",
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 17,

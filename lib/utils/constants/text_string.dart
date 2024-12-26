@@ -33,6 +33,7 @@ class ZohTextString {
   static const String delete = "Delete";
   static const String resolve = "Resolve";
   static const String available = "Available";
+  static const String unAvailable = "Unavailable";
   static const String createStaffBtn = "Create Staff";
   static const String done = "Done";
   static const String save = "Save";

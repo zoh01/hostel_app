@@ -18,6 +18,7 @@ class OnBoardingScrollPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final dark = ZohHelperFunction.isDarkMode(context);
     return Padding(
       padding: const EdgeInsets.symmetric(

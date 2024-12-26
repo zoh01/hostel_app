@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hostel_app/api_services/api_calls.dart';
+import 'package:hostel_app/models/room_change_model.dart';
 
 import '../../../../../../../../utils/constants/colors.dart';
 import '../../../../../../../../utils/constants/image_string.dart';
@@ -8,36 +10,17 @@ import '../../../../../../../../utils/device/device_utilities.dart';
 import '../../../../../../../../utils/helpers/helper_functions.dart';
 
 class RoomChangeContainer extends StatelessWidget {
-  final String name;
-  final String userName;
-  final String currentRoom;
-  final String currentBlock;
-  final String email;
-  final String phoneNo;
-  final String block;
-  final String room;
-  final String reason;
-  final void Function()? reject;
-  final void Function()? approve;
+  final Result roomInfo;
 
   const RoomChangeContainer({
+    required this.roomInfo,
     super.key,
-    required this.name,
-    required this.userName,
-    required this.currentRoom,
-    required this.currentBlock,
-    required this.email,
-    required this.phoneNo,
-    required this.block,
-    required this.room,
-    required this.reason,
-    required this.reject,
-    required this.approve,
   });
 
   @override
   Widget build(BuildContext context) {
     final dark = ZohHelperFunction.isDarkMode(context);
+    ApiCall apiCall = ApiCall();
     return Padding(
       padding: const EdgeInsets.all(ZohSizes.md),
       child: Container(
@@ -75,7 +58,7 @@ class RoomChangeContainer extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      name,
+                      "${roomInfo.studentDetails.firstName} ${roomInfo.studentDetails.lastName}",
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                           fontFamily: 'IBM_Plex_Sans',
@@ -92,7 +75,7 @@ class RoomChangeContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Username: $userName',
+                    'Username: ${roomInfo.studentDetails.userName}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -101,7 +84,7 @@ class RoomChangeContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Current Room: $currentRoom',
+                    'Current Room: ${roomInfo.currentRoomNumber}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -110,7 +93,7 @@ class RoomChangeContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Current Block: $currentBlock',
+                    'Current Block: ${roomInfo.currentBlock}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -119,7 +102,7 @@ class RoomChangeContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Email ID: $email',
+                    'Email ID: ${roomInfo.studentDetails.emailId}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -128,7 +111,7 @@ class RoomChangeContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Phone No: $phoneNo',
+                    'Phone No: ${roomInfo.studentDetails.phoneNumber}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -154,7 +137,7 @@ class RoomChangeContainer extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      'Block: $room  Room No: $block',
+                      'Block: ${roomInfo.toChangeBlock}  Room No: ${roomInfo.toChangeRoomNumber}',
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontFamily: 'Poppins',
@@ -177,7 +160,7 @@ class RoomChangeContainer extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      reason,
+                      "${roomInfo.changeReason}",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
                       textAlign: TextAlign.start,
@@ -197,7 +180,14 @@ class RoomChangeContainer extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: reject,
+                      onPressed: () {
+                        apiCall.approveOrReject(
+                          context,
+                          "REJECTED",
+                          "REJECTED",
+                          roomInfo.roomChangeRequestId,
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
                         textStyle: const TextStyle(fontSize: 20),
@@ -220,7 +210,14 @@ class RoomChangeContainer extends StatelessWidget {
                   ),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: approve,
+                      onPressed: () {
+                        apiCall.approveOrReject(
+                          context,
+                          "APPROVED",
+                          "APPROVED",
+                          roomInfo.roomChangeRequestId,
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
                         textStyle: const TextStyle(fontSize: 20),

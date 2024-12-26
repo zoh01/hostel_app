@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hostel_app/api_services/api_calls.dart';
+import 'package:hostel_app/models/issue_model.dart';
 
 import '../../../../../../../../utils/constants/colors.dart';
 import '../../../../../../../../utils/constants/image_string.dart';
@@ -8,30 +10,17 @@ import '../../../../../../../../utils/device/device_utilities.dart';
 import '../../../../../../../../utils/helpers/helper_functions.dart';
 
 class IssuesContainer extends StatelessWidget {
-  final String name;
-  final String userName;
-  final String roomNo;
-  final String email;
-  final String phoneNo;
-  final String issue;
-  final String comment;
-  final void Function()? onTap;
+  final Result issue;
 
   const IssuesContainer({
-    required this.name,
-    required this.userName,
-    required this.roomNo,
-    required this.email,
-    required this.phoneNo,
     required this.issue,
-    required this.comment,
-    required this.onTap,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     final dark = ZohHelperFunction.isDarkMode(context);
+    ApiCall apiCall = ApiCall();
     return Padding(
       padding: const EdgeInsets.all(ZohSizes.md),
       child: Container(
@@ -69,7 +58,7 @@ class IssuesContainer extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      name,
+                      '${issue.studentDetails.firstName} ${issue.studentDetails.lastName}',
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                           fontFamily: 'IBM_Plex_Sans',
@@ -86,7 +75,7 @@ class IssuesContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Username: $userName',
+                    'Username: ${issue.studentDetails.userName}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -95,7 +84,7 @@ class IssuesContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Room No: $roomNo',
+                    'Room No: ${issue.roomDetails.roomNumber}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -104,7 +93,7 @@ class IssuesContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Email ID: $email',
+                    'Email ID: ${issue.studentEmailId}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -113,7 +102,7 @@ class IssuesContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Phone No: $phoneNo',
+                    'Phone No: ${issue.studentDetails.phoneNumber}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -139,7 +128,7 @@ class IssuesContainer extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      issue,
+                      issue.issue,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontFamily: 'Poppins',
@@ -162,7 +151,7 @@ class IssuesContainer extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      comment,
+                      issue.studentComment,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
                       textAlign: TextAlign.start,
@@ -181,7 +170,9 @@ class IssuesContainer extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    apiCall.closeAnIssue(context, "RESOLVED", issue.issueId.toString());
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     textStyle: const TextStyle(fontSize: 20),

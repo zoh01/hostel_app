@@ -1,28 +1,21 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hostel_app/auth/features/presentation/screens/student/screens/change_room/change_room.dart';
+import 'package:hostel_app/models/room_availability_model.dart';
+import 'package:hostel_app/utils/constants/image_string.dart';
 
 import '../../../../../../../../utils/constants/colors.dart';
-import '../../../../../../../../utils/constants/image_string.dart';
 import '../../../../../../../../utils/constants/sizes.dart';
 import '../../../../../../../../utils/constants/text_string.dart';
 import '../../../../../../../../utils/device/device_utilities.dart';
 import '../../../../../../../../utils/helpers/helper_functions.dart';
 
 class RoomContainer extends StatelessWidget {
-  final String image;
-  final String roomNo;
-  final String block;
-  final String capacity;
-  final String currentCapacity;
-  final String type;
+  final Result room;
   final void Function()? onTap;
 
   const RoomContainer({
-    required this.image,
-    required this.roomNo,
-    required this.block,
-    required this.capacity,
-    required this.currentCapacity,
-    required this.type,
+    required this.room,
     this.onTap,
     super.key,
   });
@@ -49,14 +42,14 @@ class RoomContainer extends StatelessWidget {
               Row(
                 children: [
                   Image(
-                      image: AssetImage(image),
+                      image: const AssetImage(ZohImageString.roomAvailable),
                       width: ZohDeviceUtils.getScreenWidth(context) * .2),
                   const SizedBox(
                     width: ZohSizes.spaceBtwZoh,
                   ),
                   Expanded(
                     child: Text(
-                      'Room No - $roomNo',
+                      'Room No - ${room.roomNumber}',
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                           fontFamily: 'IBM_Plex_Sans',
@@ -73,7 +66,7 @@ class RoomContainer extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Block $block',
+                    'Block ${room.blockId.block}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -82,7 +75,7 @@ class RoomContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Capacity: $capacity',
+                    'Capacity: ${room.roomCapacity}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -91,7 +84,7 @@ class RoomContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Current Capacity: $currentCapacity',
+                    'Current Capacity: ${room.roomCurrentCapacity}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -100,7 +93,7 @@ class RoomContainer extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Type: $type',
+                    "Type: ${room.roomType?.roomType ?? " : Sharing"}",
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -113,27 +106,56 @@ class RoomContainer extends StatelessWidget {
               const SizedBox(
                 height: ZohSizes.spaceBtwZoh,
               ),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: onTap,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    textStyle: const TextStyle(fontSize: 20),
-                    minimumSize: const Size(0, 30),
-                    side: const BorderSide(color: Colors.green),
-                    elevation: 5,
-                  ),
-                  child: const Text(
-                    ZohTextString.available,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'IBMPlexSans',
-                        fontSize: 15),
-                  ),
-                ),
-              ),
+              room.roomCurrentCapacity == 5
+                  ? SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: onTap,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          textStyle: const TextStyle(fontSize: 20),
+                          minimumSize: const Size(0, 30),
+                          side: const BorderSide(color: Colors.red),
+                          elevation: 5,
+                        ),
+                        child: const Text(
+                          ZohTextString.unAvailable,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'IBMPlexSans',
+                              fontSize: 15),
+                        ),
+                      ),
+                    )
+                  : SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => const ChangeRoom(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green,
+                          textStyle: const TextStyle(fontSize: 20),
+                          minimumSize: const Size(0, 30),
+                          side: const BorderSide(color: Colors.green),
+                          elevation: 5,
+                        ),
+                        child: const Text(
+                          ZohTextString.available,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'IBMPlexSans',
+                              fontSize: 15),
+                        ),
+                      ),
+                    ),
             ],
           ),
         ),

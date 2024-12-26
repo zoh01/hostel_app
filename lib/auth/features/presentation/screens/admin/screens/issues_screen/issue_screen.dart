@@ -1,20 +1,45 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hostel_app/auth/features/presentation/screens/admin/screens/issues_screen/widgets/issue.dart';
 import 'package:hostel_app/auth/features/presentation/screens/admin/screens/issues_screen/widgets/issue_container.dart';
+import 'package:hostel_app/models/issue_model.dart';
 import 'package:hostel_app/utils/helpers/helper_functions.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../../../../api_services/api_provider.dart';
+import '../../../../../../../api_services/api_utils.dart';
 import '../../../../../../../utils/constants/colors.dart';
 import '../../../../../../../utils/constants/sizes.dart';
 
-class IssueScreen extends StatelessWidget {
-  IssueScreen({super.key});
+class IssueScreen extends StatefulWidget {
+  const IssueScreen({super.key});
 
-  List<Issue> studentIssue = [
-    Issue('Adebayo Wariz', 'warizoh', '103', 'adebayozoh@gmail.com', '07025136608', 'Bathroom', 'Bathroom tap is not working', () {}),
-    Issue('Adebayo Olamide', 'zoh', '201', 'adebayowarizoh@gmail.com', '07082390674', 'Kitchen', 'Kitchen cabinet is leaking', () {}),
-    Issue('Adebayo Zoh', 'zoh Money', '202', 'zohmoney@gmail.com', '08163133077', 'Bedroom', 'Bedroom ceiling is leaking', () {}),
-  ];
+  @override
+  State<IssueScreen> createState() => _IssueScreenState();
+}
+
+class _IssueScreenState extends State<IssueScreen> {
+
+  IssueModel? issueModel;
+
+  Future<void> fetchStudentIssues() async {
+    try {
+      final apiProvider = Provider.of<ApiProvider>(context, listen: false);
+
+      final issues =
+      await apiProvider.getResponse(ApiUtils.studentIssues);
+
+      if (issues.statusCode == 200) {
+        final Map<String, dynamic> issue = json.decode(issues.body);
+
+        issueModel = IssueModel.fromJson(issue);
+      }
+    } catch (e) {
+      print('error $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final dark = ZohHelperFunction.isDarkMode(context);
@@ -37,24 +62,29 @@ class IssueScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: studentIssue.length,
-        itemBuilder: _buildIssuesContainer,
+      body: FutureBuilder(
+        future: fetchStudentIssues(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Text("Error: ${snapshot.error}");
+          } else {
+            return issueModel == null
+                ? const Center(
+              child: Text('No Issues found'),
+            )
+                : ListView.builder(
+                shrinkWrap: true,
+                itemCount: issueModel!.result.length,
+                itemBuilder: (context, index) {
+                  return IssuesContainer(issue: issueModel!.result[index],);
+                });
+          }
+        },
       ),
-    );
-  }
-
-  Widget _buildIssuesContainer(BuildContext context, int index) {
-    Issue zoh = studentIssue[index];
-    return IssuesContainer(
-      name: zoh.name,
-      userName: zoh.userName,
-      roomNo: zoh.roomNo,
-      email: zoh.email,
-      phoneNo: zoh.phoneNo,
-      issue: zoh.issue,
-      comment: zoh.comment,
-      onTap: zoh.onTap,
     );
   }
 }

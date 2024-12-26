@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hostel_app/utils/helpers/helper_functions.dart';
 
 import '../../../../../../../utils/constants/colors.dart';
-import '../../../../../../../utils/constants/image_string.dart';
 import '../../../../../../../utils/constants/sizes.dart';
 import '../../../../../../../utils/device/device_utilities.dart';
 

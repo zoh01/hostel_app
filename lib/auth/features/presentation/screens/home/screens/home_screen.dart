@@ -1,25 +1,60 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hostel_app/auth/features/presentation/screens/admin/screens/issues_screen/issue_screen.dart';
 import 'package:hostel_app/auth/features/presentation/screens/admin/screens/room_change_request/room_change_request.dart';
 import 'package:hostel_app/auth/features/presentation/screens/admin/screens/staff_members/staff_members.dart';
-import 'package:hostel_app/auth/features/presentation/screens/login_screen/login_screen.dart';
 import 'package:hostel_app/auth/features/presentation/screens/student/screens/hostel_fee/hostel_fee.dart';
+import 'package:hostel_app/auth/features/presentation/screens/student/screens/profile/widgets/profile.dart';
 import 'package:hostel_app/auth/features/presentation/screens/student/screens/room_available/room_available.dart';
+import 'package:hostel_app/models/student_info_model.dart';
 import 'package:hostel_app/utils/constants/image_string.dart';
 import 'package:hostel_app/utils/constants/sizes.dart';
 import 'package:hostel_app/utils/constants/text_string.dart';
 import 'package:hostel_app/utils/device/device_utilities.dart';
 import 'package:hostel_app/utils/helpers/helper_functions.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../../../api_services/api_provider.dart';
+import '../../../../../../api_services/api_utils.dart';
 import '../../../../../../utils/constants/colors.dart';
 import '../../admin/screens/create_staff/create_staff.dart';
 import 'home_widgets/categories_container.dart';
 import 'home_widgets/info_container.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  StudentInfoModel? studentInfoModel;
+
+  Future<void> fetchStudentData(String emailId) async {
+    try {
+      final apiProvider = Provider.of<ApiProvider>(context, listen: false);
+
+      final studentInfo =
+          await apiProvider.getResponse('${ApiUtils.studentInfo}$emailId');
+
+      if (studentInfo.statusCode == 200) {
+        final Map<String, dynamic> student = json.decode(studentInfo.body);
+
+        studentInfoModel = StudentInfoModel.fromJson(student);
+      }
+    } catch (e) {
+      print('error $e');
+    }
+  }
+
+  @override
+  void initState() {
+    fetchStudentData(ApiUtils.email);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +62,8 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: dark ? ZohColors.darkerGrey : Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              CupertinoPageRoute(
-                builder: (context) => const LoginScreen(),
-              ),
-            );
-          },
-          icon: Icon(
-            Icons.logout,
-            color: dark ? Colors.white : Colors.black,
-          ),
-        ),
         title: const Text(
           'Dashboard',
           style: TextStyle(
@@ -52,9 +74,19 @@ class HomeScreen extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: ZohSizes.md),
-            child: Image(
-                image: const AssetImage(ZohImageString.user),
-                width: ZohDeviceUtils.getScreenWidth(context) * .11),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) => const ProfileScreen(),
+                  ),
+                );
+              },
+              child: Image(
+                  image: const AssetImage(ZohImageString.user),
+                  width: ZohDeviceUtils.getScreenWidth(context) * .11),
+            ),
           )
         ],
       ),
@@ -90,7 +122,7 @@ class HomeScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             CupertinoPageRoute(
-                              builder: (context) => RoomAvailable(),
+                              builder: (context) => const RoomAvailable(),
                             ),
                           );
                         },
@@ -102,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             CupertinoPageRoute(
-                              builder: (context) => IssueScreen(),
+                              builder: (context) => const IssueScreen(),
                             ),
                           );
                         },
@@ -111,10 +143,19 @@ class HomeScreen extends StatelessWidget {
                       ),
                       CategoriesContainer(
                         onTap: () {
+                          final zoh = studentInfoModel!.result.first;
                           Navigator.push(
                             context,
                             CupertinoPageRoute(
-                              builder: (context) => const HostelFee(),
+                              builder: (context) => HostelFee(
+                                blockNumber: zoh.studentProfileData.block,
+                                roomNumber: zoh.studentProfileData.roomNumber.toString(),
+                                maintenanceCharge: zoh.roomChargesModel.maintenanceCharges.toString(),
+                                parkingCharge: zoh.roomChargesModel.parkingCharges.toString(),
+                                waterCharge: zoh.roomChargesModel.roomWaterCharges.toString(),
+                                roomCharge: zoh.roomChargesModel.roomAmount.toString(),
+                                totalCharge: zoh.roomChargesModel.totalAmount.toString(),
+                              ),
                             ),
                           );
                         },
@@ -146,7 +187,7 @@ class HomeScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             CupertinoPageRoute(
-                              builder: (context) => StaffMembers(),
+                              builder: (context) => const StaffMembers(),
                             ),
                           );
                         },
@@ -158,7 +199,7 @@ class HomeScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             CupertinoPageRoute(
-                              builder: (context) => RoomChangeRequest(),
+                              builder: (context) => const RoomChangeRequests(),
                             ),
                           );
                         },

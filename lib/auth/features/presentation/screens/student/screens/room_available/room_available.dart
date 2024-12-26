@@ -1,26 +1,45 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hostel_app/api_services/api_provider.dart';
+import 'package:hostel_app/api_services/api_utils.dart';
 import 'package:hostel_app/auth/features/presentation/screens/student/screens/room_available/widgets/room_container.dart';
-import 'package:hostel_app/auth/features/presentation/screens/student/screens/room_available/widgets/room_details.dart';
-import 'package:hostel_app/utils/constants/image_string.dart';
+import 'package:hostel_app/models/room_availability_model.dart';
 import 'package:hostel_app/utils/helpers/helper_functions.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../../../utils/constants/colors.dart';
 import '../../../../../../../utils/constants/sizes.dart';
-import '../../../../../../../utils/device/device_utilities.dart';
 
-class RoomAvailable extends StatelessWidget {
-  RoomAvailable({super.key});
+class RoomAvailable extends StatefulWidget {
+  const RoomAvailable({super.key});
 
-  List<RoomDetails> roomDetails = [
-    RoomDetails(ZohImageString.roomAvailable, '101', 'A', '5', '2', 'Deluxe', () {}),
-    RoomDetails(ZohImageString.roomAvailable, '102', 'A', '5', '3', 'Luxury', () {},),
-    RoomDetails(ZohImageString.roomAvailable, '103', 'A', '5', '1', 'AC', () {},),
-    RoomDetails(ZohImageString.availableRoom, '201', 'B', '4', '0', 'Deluxe', () {},),
-    RoomDetails(ZohImageString.availableRoom, '202', 'B', '4', '1', 'Luxury', () {},),
-    RoomDetails(ZohImageString.availableRoom, '203', 'B', '4', '2', 'Luxury', () {},),
-  ];
+  @override
+  State<RoomAvailable> createState() => _RoomAvailableState();
+}
 
+class _RoomAvailableState extends State<RoomAvailable> {
+  RoomAvailability? roomAvailabilityModel;
+
+  Future<void> fetchRoomAvailability() async {
+    try {
+      final apiProvider = Provider.of<ApiProvider>(context, listen: false);
+
+      final roomAvailability =
+          await apiProvider.getResponse(ApiUtils.roomAvailability);
+
+      if (roomAvailability.statusCode == 200) {
+        final Map<String, dynamic> room = json.decode(roomAvailability.body);
+
+        roomAvailabilityModel = RoomAvailability.fromJson(room);
+      }
+    } catch (e) {
+      print('error $e');
+    }
+  }
+
+  //
   @override
   Widget build(BuildContext context) {
     final dark = ZohHelperFunction.isDarkMode(context);
@@ -43,23 +62,31 @@ class RoomAvailable extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: roomDetails.length,
-        itemBuilder: _buildAvailableRooms,
+      body: FutureBuilder(
+        future: fetchRoomAvailability(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Text("Error: ${snapshot.error}");
+          } else {
+            return roomAvailabilityModel == null
+                ? const Center(
+                    child: Text('No room available'),
+                  )
+                : ListView.builder(
+              shrinkWrap: true,
+                itemCount: roomAvailabilityModel!.result.length,
+                itemBuilder: (context, index) {
+                    return RoomContainer(
+                      room: roomAvailabilityModel!.result[index],
+                    );
+                  });
+          }
+        },
       ),
     );
   }
-
-  Widget _buildAvailableRooms(BuildContext context, int index) {
-    RoomDetails roomDetail = roomDetails[index];
-    return RoomContainer(
-      image: roomDetail.image,
-      roomNo: roomDetail.roomNo,
-      block: roomDetail.block,
-      capacity: roomDetail.capacity,
-      currentCapacity: roomDetail.currentCapacity,
-      type: roomDetail.type,
-      onTap: roomDetail.onTap,);
-  }
 }
-

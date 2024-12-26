@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hostel_app/api_services/api_calls.dart';
 import 'package:hostel_app/auth/features/presentation/screens/home/screens/home_screen.dart';
 import 'package:hostel_app/utils/constants/colors.dart';
 import 'package:hostel_app/utils/constants/text_string.dart';
@@ -21,6 +22,8 @@ class _LoginFormState extends State<LoginForm> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final _zohKey = GlobalKey<FormState>();
+
+  ApiCall apiCall = ApiCall();
 
   @override
   void dispose() {
@@ -155,11 +158,10 @@ class _LoginFormState extends State<LoginForm> {
               onPressed: () {
                 if (_zohKey.currentState!.validate()) {
                   print('Validation');
-                  Navigator.push(
+                  apiCall.handleLogin(
                     context,
-                    CupertinoPageRoute(
-                      builder: (context) => const HomeScreen(),
-                    ),
+                    emailController.text,
+                    passwordController.text,
                   );
                 }
               },
