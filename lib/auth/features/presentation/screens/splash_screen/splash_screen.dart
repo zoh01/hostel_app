@@ -5,6 +5,7 @@ import 'package:hostel_app/utils/constants/image_string.dart';
 import 'package:hostel_app/utils/constants/sizes.dart';
 import 'package:hostel_app/utils/constants/text_string.dart';
 import 'package:hostel_app/utils/helpers/helper_functions.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../../utils/constants/colors.dart';
 import '../onboarding_screen/onboarding_screen.dart';
@@ -17,6 +18,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool zoh = true;
 
   @override
   void initState() {
@@ -25,8 +27,15 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.of(context).pushReplacement(
           CupertinoPageRoute(builder: (ctx) => const OnboardingScreen()));
     });
+    loadData();
   }
 
+  loadData() async {
+    await Future.delayed(const Duration(seconds: 3));
+    setState(() {
+      zoh = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,31 +45,62 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(ZohSizes.defaultSpace),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image(
-                  image: const AssetImage(
-                    ZohImageString.appHome,
-                  ),
-                  height: ZohHelperFunction.screenHeight() * .8),
-              SizedBox(
-                child: DefaultTextStyle(
-                  style: const TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'IBM_Plex_Sans',
-                      fontSize: 20),
-                  child: AnimatedTextKit(
-                    animatedTexts: [
-                      TypewriterAnimatedText(
-                        ZohTextString.splashTitle,
-                      ),
+          child: zoh
+              ? Shimmer.fromColors(
+                  baseColor: dark ? Colors.grey : Colors.white,
+                  highlightColor: Colors.transparent,
+                  enabled: zoh,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image(
+                          image: const AssetImage(
+                            ZohImageString.appHome,
+                          ),
+                          height: ZohHelperFunction.screenHeight() * .8),
+                      SizedBox(
+                        child: DefaultTextStyle(
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'IBM_Plex_Sans',
+                              fontSize: 20),
+                          child: AnimatedTextKit(
+                            animatedTexts: [
+                              TypewriterAnimatedText(
+                                ZohTextString.splashTitle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )
                     ],
                   ),
+                )
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image(
+                        image: const AssetImage(
+                          ZohImageString.appHome,
+                        ),
+                        height: ZohHelperFunction.screenHeight() * .8),
+                    SizedBox(
+                      child: DefaultTextStyle(
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'IBM_Plex_Sans',
+                            fontSize: 20),
+                        child: AnimatedTextKit(
+                          animatedTexts: [
+                            TypewriterAnimatedText(
+                              ZohTextString.splashTitle,
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              )
-            ],
-          ),
         ),
       ),
     );

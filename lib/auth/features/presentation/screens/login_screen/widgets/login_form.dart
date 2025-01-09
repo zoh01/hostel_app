@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hostel_app/api_services/api_calls.dart';
-import 'package:hostel_app/auth/features/presentation/screens/home/screens/home_screen.dart';
+import 'package:hostel_app/api_services/api_utils.dart';
 import 'package:hostel_app/utils/constants/colors.dart';
 import 'package:hostel_app/utils/constants/text_string.dart';
 
@@ -156,6 +155,16 @@ class _LoginFormState extends State<LoginForm> {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
+                /// Show progress indicator while login in
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return const Center(
+                        child: CircularProgressIndicator(
+                      color: Colors.white70,
+                    ));
+                  },
+                );
                 if (_zohKey.currentState!.validate()) {
                   print('Validation');
                   apiCall.handleLogin(

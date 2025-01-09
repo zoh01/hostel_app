@@ -11,9 +11,31 @@ import 'package:hostel_app/utils/constants/image_string.dart';
 import 'package:hostel_app/utils/constants/text_string.dart';
 import 'package:hostel_app/utils/device/device_utilities.dart';
 import 'package:hostel_app/utils/helpers/helper_functions.dart';
+import 'package:shimmer/shimmer.dart';
 
-class OnboardingScreen extends StatelessWidget {
+class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
+
+  @override
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  // bool enable = true;
+  //
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   loadData();
+  // }
+  //
+  // loadData() async{
+  //   await Future.delayed(const Duration(seconds: 3));
+  //   setState(() {
+  //     enable = false;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -27,30 +49,29 @@ class OnboardingScreen extends StatelessWidget {
             return Stack(
               children: [
                 PageView(
-                  onPageChanged: (zoh) {
-                    state.page = zoh;
-                    BlocProvider.of<OnboardingBloc>(context).add(
-                        OnboardingEvent());
-                  },
-                  children: const [
-                    OnBoardingScrollPage(
-                      image: ZohImageString.onBoarding1,
-                      title: ZohTextString.onBoardingTitle1,
-                      subTitle: ZohTextString.onBoardingSubTitle1,
+                      onPageChanged: (zoh) {
+                        state.page = zoh;
+                        BlocProvider.of<OnboardingBloc>(context)
+                            .add(OnboardingEvent());
+                      },
+                      children: const [
+                        OnBoardingScrollPage(
+                          image: ZohImageString.onBoarding1,
+                          title: ZohTextString.onBoardingTitle1,
+                          subTitle: ZohTextString.onBoardingSubTitle1,
+                        ),
+                        OnBoardingScrollPage(
+                          image: ZohImageString.onBoarding2,
+                          title: ZohTextString.onBoardingTitle2,
+                          subTitle: ZohTextString.onBoardingSubTitle2,
+                        ),
+                        OnBoardingScrollPage(
+                          image: ZohImageString.onBoarding3,
+                          title: ZohTextString.onBoardingTitle3,
+                          subTitle: ZohTextString.onBoardingSubTitle3,
+                        ),
+                      ],
                     ),
-                    OnBoardingScrollPage(
-                      image: ZohImageString.onBoarding2,
-                      title: ZohTextString.onBoardingTitle2,
-                      subTitle: ZohTextString.onBoardingSubTitle2,
-                    ),
-                    OnBoardingScrollPage(
-                      image: ZohImageString.onBoarding3,
-                      title: ZohTextString.onBoardingTitle3,
-                      subTitle: ZohTextString.onBoardingSubTitle3,
-                    ),
-                  ],
-                ),
-
                 /// Dots Indicator
                 Positioned(
                   bottom: ZohDeviceUtils.getAppBarHeight() * 3.8,
@@ -84,5 +105,3 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 }
-
-

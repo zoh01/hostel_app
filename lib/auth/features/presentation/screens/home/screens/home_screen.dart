@@ -15,6 +15,7 @@ import 'package:hostel_app/utils/constants/text_string.dart';
 import 'package:hostel_app/utils/device/device_utilities.dart';
 import 'package:hostel_app/utils/helpers/helper_functions.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../../../api_services/api_provider.dart';
 import '../../../../../../api_services/api_utils.dart';
@@ -84,8 +85,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
               child: Image(
-                  image: const AssetImage(ZohImageString.user),
-                  width: ZohDeviceUtils.getScreenWidth(context) * .11),
+                image: const AssetImage(ZohImageString.user),
+                width: ZohDeviceUtils.getScreenWidth(context) * .11,
+              ),
             ),
           )
         ],
@@ -149,12 +151,21 @@ class _HomeScreenState extends State<HomeScreen> {
                             CupertinoPageRoute(
                               builder: (context) => HostelFee(
                                 blockNumber: zoh.studentProfileData.block,
-                                roomNumber: zoh.studentProfileData.roomNumber.toString(),
-                                maintenanceCharge: zoh.roomChargesModel.maintenanceCharges.toString(),
-                                parkingCharge: zoh.roomChargesModel.parkingCharges.toString(),
-                                waterCharge: zoh.roomChargesModel.roomWaterCharges.toString(),
-                                roomCharge: zoh.roomChargesModel.roomAmount.toString(),
-                                totalCharge: zoh.roomChargesModel.totalAmount.toString(),
+                                roomNumber: zoh.studentProfileData.roomNumber
+                                    .toString(),
+                                maintenanceCharge: zoh
+                                    .roomChargesModel.maintenanceCharges
+                                    .toString(),
+                                parkingCharge: zoh
+                                    .roomChargesModel.parkingCharges
+                                    .toString(),
+                                waterCharge: zoh
+                                    .roomChargesModel.roomWaterCharges
+                                    .toString(),
+                                roomCharge:
+                                    zoh.roomChargesModel.roomAmount.toString(),
+                                totalCharge:
+                                    zoh.roomChargesModel.totalAmount.toString(),
                               ),
                             ),
                           );

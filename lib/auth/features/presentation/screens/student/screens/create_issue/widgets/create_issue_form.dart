@@ -162,6 +162,16 @@ class _CreateIssueFormState extends State<CreateIssueForm> {
                     ApiUtils.phoneNumber,
                   );
                 }
+                /// Show progress indicator while submitting...
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.white70,
+                        ));
+                  },
+                );
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: ZohColors.primaryColor,

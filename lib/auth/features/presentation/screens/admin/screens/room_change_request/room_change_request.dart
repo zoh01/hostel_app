@@ -87,7 +87,14 @@ class _RoomChangeRequestsState extends State<RoomChangeRequests> {
                 } else {
                   return roomChangeModel == null
                       ? const Center(
-                          child: Text('No Staff found'),
+                          child: Text(
+                            'No Staff found',
+                            style: TextStyle(
+                              fontFamily: 'IBM_Plex_Sans',
+                              fontSize: ZohSizes.spaceBtwZoh,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                         )
                       : ListView.builder(
                           shrinkWrap: true,
@@ -102,21 +109,4 @@ class _RoomChangeRequestsState extends State<RoomChangeRequests> {
             ),
     );
   }
-
-// Widget _buildRoomChangeContainer(BuildContext context, int index) {
-//   RoomChange zoh = changeRequest[index];
-//   return RoomChangeContainer(
-//     name: zoh.name,
-//     userName: zoh.userName,
-//     currentRoom: zoh.currentRoom,
-//     currentBlock: zoh.currentBlock,
-//     email: zoh.email,
-//     phoneNo: zoh.phoneNo,
-//     block: zoh.block,
-//     room: zoh.room,
-//     reason: zoh.reason,
-//     reject: zoh.reject,
-//     approve: zoh.approve,
-//   );
-// }
 }

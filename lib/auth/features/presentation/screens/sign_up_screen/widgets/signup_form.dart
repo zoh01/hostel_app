@@ -482,6 +482,16 @@ class _SignUpFormState extends State<SignUpForm> {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
+                /// Show progress indicator while creating account
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.white70,
+                        ),
+                      );
+                    });
                 print(selectedBlock);
                 print(selectedRoom);
                 if (_formKey.currentState!.validate()) {

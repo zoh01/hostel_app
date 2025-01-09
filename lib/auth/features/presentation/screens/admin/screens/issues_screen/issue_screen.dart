@@ -20,19 +20,16 @@ class IssueScreen extends StatefulWidget {
 }
 
 class _IssueScreenState extends State<IssueScreen> {
-
   IssueModel? issueModel;
 
   Future<void> fetchStudentIssues() async {
     try {
       final apiProvider = Provider.of<ApiProvider>(context, listen: false);
 
-      final issues =
-      await apiProvider.getResponse(ApiUtils.studentIssues);
+      final issues = await apiProvider.getResponse(ApiUtils.studentIssues);
 
       if (issues.statusCode == 200) {
         final Map<String, dynamic> issue = json.decode(issues.body);
-
         issueModel = IssueModel.fromJson(issue);
       }
     } catch (e) {
@@ -62,29 +59,52 @@ class _IssueScreenState extends State<IssueScreen> {
           ),
         ),
       ),
-      body: FutureBuilder(
-        future: fetchStudentIssues(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasError) {
-            return Text("Error: ${snapshot.error}");
-          } else {
-            return issueModel == null
-                ? const Center(
-              child: Text('No Issues found'),
+      body: ApiUtils.roleId != 1
+          ? const Center(
+              child: Padding(
+                padding: EdgeInsets.all(ZohSizes.defaultSpace),
+                child: Text(
+                  "Only the Admin have permission to view this screen...",
+                  style: TextStyle(
+                    fontFamily: 'IBM_Plex_Sans',
+                    fontSize: ZohSizes.spaceBtwZoh,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
             )
-                : ListView.builder(
-                shrinkWrap: true,
-                itemCount: issueModel!.result.length,
-                itemBuilder: (context, index) {
-                  return IssuesContainer(issue: issueModel!.result[index],);
-                });
-          }
-        },
-      ),
+          : FutureBuilder(
+              future: fetchStudentIssues(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (snapshot.hasError) {
+                  return Text("Error: ${snapshot.error}");
+                } else {
+                  return issueModel == null
+                      ? const Center(
+                          child: Text(
+                            'No Issues found',
+                            style: TextStyle(
+                              fontFamily: 'IBM_Plex_Sans',
+                              fontSize: ZohSizes.spaceBtwZoh,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        )
+                      : ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: issueModel!.result.length,
+                          itemBuilder: (context, index) {
+                            return IssuesContainer(
+                              issue: issueModel!.result[index],
+                            );
+                          });
+                }
+              },
+            ),
     );
   }
 }

@@ -10,6 +10,7 @@ import 'package:hostel_app/utils/constants/sizes.dart';
 import 'package:hostel_app/utils/helpers/helper_functions.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../../utils/constants/text_string.dart';
 
@@ -21,6 +22,22 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool omoLara = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadData();
+  }
+
+  loadData() async{
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() {
+      omoLara = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final dark = ZohHelperFunction.isDarkMode(context);
@@ -32,7 +49,15 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.all(ZohSizes.defaultSpace),
             child: Column(
               children: [
-                Image(
+                omoLara ? Shimmer.fromColors(
+                  baseColor: dark ? ZohColors.darkGrey : Colors.white,
+                  highlightColor: Colors.transparent,
+                  enabled: omoLara,
+                  child: Image(
+                    image: const AssetImage(ZohImageString.appHome),
+                    width: ZohHelperFunction.screenWidth() * .3,
+                  ),
+                ) : Image(
                   image: const AssetImage(ZohImageString.appHome),
                   width: ZohHelperFunction.screenWidth() * .3,
                 ),

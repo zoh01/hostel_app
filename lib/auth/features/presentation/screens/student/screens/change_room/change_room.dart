@@ -261,6 +261,16 @@ class _ChangeRoomState extends State<ChangeRoom> {
                       if (_formZoh.currentState!.validate()) {
                         print('Loading');
                       }
+                      /// Show progress indicator while submitting...
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.white70,
+                              ));
+                        },
+                      );
                       apiCall.roomChangeRequestZoh(
                         context,
                         selectedRoom!,

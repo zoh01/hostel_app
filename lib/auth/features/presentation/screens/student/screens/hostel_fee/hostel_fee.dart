@@ -164,7 +164,7 @@ class HostelFee extends StatelessWidget {
                               width: ZohSizes.md,
                             ),
                             Text(
-                              "#$maintenanceCharge",
+                              '\$ $maintenanceCharge',
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 17,
@@ -194,7 +194,7 @@ class HostelFee extends StatelessWidget {
                               width: ZohSizes.md,
                             ),
                             Text(
-                              "#$parkingCharge",
+                              '\$ $parkingCharge',
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 17,
@@ -224,7 +224,7 @@ class HostelFee extends StatelessWidget {
                               width: ZohSizes.md,
                             ),
                             Text(
-                              "#$waterCharge",
+                              '\$ $waterCharge',
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 17,
@@ -254,7 +254,7 @@ class HostelFee extends StatelessWidget {
                               width: ZohSizes.md,
                             ),
                             Text(
-                              "#$roomCharge",
+                              '\$ $roomCharge',
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 17,
@@ -287,7 +287,7 @@ class HostelFee extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "#$totalCharge",
+                              '\$ $totalCharge',
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontSize: 17,

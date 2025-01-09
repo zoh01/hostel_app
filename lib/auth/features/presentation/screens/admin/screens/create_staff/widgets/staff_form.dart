@@ -282,6 +282,16 @@ class _StaffFormState extends State<StaffForm> {
                     jobRoleController.text,
                   );
                 }
+                /// Show progress indicator while Creating staff...
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return const Center(
+                        child: CircularProgressIndicator(
+                          color: Colors.white70,
+                        ));
+                  },
+                );
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: ZohColors.primaryColor,

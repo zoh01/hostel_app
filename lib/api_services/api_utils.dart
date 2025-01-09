@@ -9,7 +9,7 @@ class ApiUtils {
   static const String createIssue = "/maintenance/createIssue";
   static const String zohRoomChangeRequest = "/room/change/request";
   static const String roomAvailability = "/room/getRooms/AVAILABLE";
-  static const String studentIssues = "/maintenance/fetch/issue/open";
+  static const String studentIssues = "/maintenance/fetch/issue/OPEN";
   static const String allStaff = "/admin/fetch/allStaff";
   static const String deleteStaff = "/admin/delete/staff/";
   static const String studentInfo = "/student/getStudentDetails?studentEmailId=";

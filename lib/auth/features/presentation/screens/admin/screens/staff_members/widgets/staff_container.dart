@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hostel_app/api_services/api_calls.dart';
 import 'package:hostel_app/models/staff_info_model.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../../../../../utils/constants/colors.dart';
 import '../../../../../../../../utils/constants/image_string.dart';
@@ -24,6 +25,21 @@ class StaffContainer extends StatefulWidget {
 
 class _StaffContainerState extends State<StaffContainer> {
   ApiCall apiCall = ApiCall();
+  bool omoLara = true;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    laraData();
+  }
+
+  laraData() async{
+    await Future.delayed(const Duration(seconds: 3));
+    setState(() {
+      omoLara = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +59,116 @@ class _StaffContainerState extends State<StaffContainer> {
         ),
         child: Padding(
           padding: const EdgeInsets.all(ZohSizes.md),
-          child: Column(
+          child: omoLara ? Shimmer.fromColors(
+            baseColor: dark ? ZohColors.darkGrey : Colors.white,
+            highlightColor: Colors.transparent,
+            enabled: omoLara,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Image(
+                        image: const AssetImage(ZohImageString.user),
+                        width: ZohDeviceUtils.getScreenWidth(context) * .2),
+                    const SizedBox(
+                      width: ZohSizes.spaceBtwZoh,
+                    ),
+                    Expanded(
+                      child: Text(
+                        '${widget.staff.jobRole}',
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontFamily: 'IBM_Plex_Sans',
+                            fontSize: ZohSizes.spaceBtwZoh,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: ZohSizes.spaceBtwItems,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'First Name: ${widget.staff.firstName}',
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 17,
+                          color: dark ? Colors.white54 : Colors.black54,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Last Name: ${widget.staff.lastName}',
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 17,
+                          color: dark ? Colors.white54 : Colors.black54,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Email: ${widget.staff.emailId}',
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 17,
+                          color: dark ? Colors.white54 : Colors.black54,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Phone No: ${widget.staff.phoneNumber}',
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 17,
+                        color: dark ? Colors.white54 : Colors.black54,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: ZohSizes.spaceBtwZoh,
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      apiCall.deleteStaff(context, widget.staff.emailId);
+                      /// Show progress indicator while deleting staff...
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.white70,
+                              ));
+                        },
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      textStyle: const TextStyle(fontSize: 20),
+                      minimumSize: const Size(0, 30),
+                      side: const BorderSide(color: Colors.red),
+                      elevation: 5,
+                    ),
+                    child: const Text(
+                      ZohTextString.delete,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'IBMPlexSans',
+                          fontSize: 15),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ) : Column(
             children: [
               Row(
                 children: [
@@ -118,6 +243,16 @@ class _StaffContainerState extends State<StaffContainer> {
                 child: ElevatedButton(
                   onPressed: () {
                     apiCall.deleteStaff(context, widget.staff.emailId);
+                    /// Show progress indicator while deleting staff...
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white70,
+                            ));
+                      },
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,

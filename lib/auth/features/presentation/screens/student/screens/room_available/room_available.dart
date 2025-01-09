@@ -39,7 +39,6 @@ class _RoomAvailableState extends State<RoomAvailable> {
     }
   }
 
-  //
   @override
   Widget build(BuildContext context) {
     final dark = ZohHelperFunction.isDarkMode(context);

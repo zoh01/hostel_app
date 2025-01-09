@@ -3,9 +3,12 @@ class ZohImageString {
   static const String appLogo = "assets/images/hostel_logo.png";
   static const String appHome = "assets/images/home.png";
 
+  /// Animations
+  static const String loading = "assets/animations/dots-loading.gif";
+
   /// Onboarding Images
   static const String onBoarding1 = "assets/images/cooperation.png";
-  static const String onBoarding2 = "assets/images/comfortable_envi.png";
+  static const String onBoarding2 = "assets/images/cooperate.png";
   static const String onBoarding3 = "assets/images/secondary_home.png";
 
   /// Home Images
