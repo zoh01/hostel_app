@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hostel_app/api_services/api_provider.dart';
-import 'package:hostel_app/api_services/api_utils.dart';
 import 'package:hostel_app/auth/features/presentation/screens/login_screen/login_screen.dart';
 import 'package:hostel_app/auth/features/presentation/screens/sign_up_screen/widgets/signup_form.dart';
 import 'package:hostel_app/utils/constants/sizes.dart';
 import 'package:hostel_app/utils/helpers/helper_functions.dart';
-import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
 
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/text_string.dart';

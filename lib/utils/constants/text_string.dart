@@ -7,9 +7,9 @@ class ZohTextString {
   static const String onBoardingTitle2 = "Encouraging Cooperation";
   static const String onBoardingTitle3 = "Providing Secondary Housing";
 
-  static const String onBoardingSubTitle1 = "Welcome to a World of Limitless Choices - Your Product Awaits!";
-  static const String onBoardingSubTitle2 = "For Seamless Transactions, Choose Your Payment Path - Your convenience, Our Priority!";
-  static const String onBoardingSubTitle3 = "From Our Doorstep to Yours - Swift, Secure and Contactless Delivery!";
+  static const String onBoardingSubTitle1 = "Welcome to a World of Limitless Choices - Your Favorite Room Awaits!";
+  static const String onBoardingSubTitle2 = "A Space that Encourages Cooperation among Individuals Living Together!";
+  static const String onBoardingSubTitle3 = "A Space that Provides Secondary Home where you get all basic Amenities!";
 
 
   /// Authentication Form Text
