@@ -11,7 +11,6 @@ import 'package:hostel_app/utils/constants/image_string.dart';
 import 'package:hostel_app/utils/constants/text_string.dart';
 import 'package:hostel_app/utils/device/device_utilities.dart';
 import 'package:hostel_app/utils/helpers/helper_functions.dart';
-import 'package:shimmer/shimmer.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});

@@ -39,7 +39,6 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
-  #   - images/a_dot_ham.jpeg
 
   fonts:
     - family: IBM_Plex_Sans

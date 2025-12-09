@@ -10,7 +10,6 @@ import '../../../../../../../../utils/constants/text_string.dart';
 import '../../../../../../../../utils/device/device_utilities.dart';
 import '../../../../../../../../utils/helpers/helper_functions.dart';
 
-
 class StaffContainer extends StatefulWidget {
   final Result staff;
 

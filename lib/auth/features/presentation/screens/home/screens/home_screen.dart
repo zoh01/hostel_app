@@ -15,7 +15,6 @@ import 'package:hostel_app/utils/constants/text_string.dart';
 import 'package:hostel_app/utils/device/device_utilities.dart';
 import 'package:hostel_app/utils/helpers/helper_functions.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../../../../api_services/api_provider.dart';
 import '../../../../../../api_services/api_utils.dart';

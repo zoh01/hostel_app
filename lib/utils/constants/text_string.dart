@@ -11,7 +11,6 @@ class ZohTextString {
   static const String onBoardingSubTitle2 = "A Space that Encourages Cooperation among Individuals Living Together!";
   static const String onBoardingSubTitle3 = "A Space that Provides Secondary Home where you get all basic Amenities!";
 
-
   /// Authentication Form Text
   static const String firstName = "First Name";
   static const String lastName = "Last Name";
