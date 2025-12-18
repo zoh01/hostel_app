@@ -35,3 +35,11 @@ The app serves three primary user types:
 ---
 
 ## ✨ Features
+### 🔐 User Management & Authentication
+- **Multi-Role Access Control:** Separate interfaces for admins, staff, and guests
+- **Secure Login System:** Email/password authentication with password recovery
+- **User Profiles:** Comprehensive profiles with personal information and documents
+- **Registration Management:** Digital onboarding process for new residents
+- **Guest Database:** Centralized repository of all current and past guests
+
+### 🏠 Room Management
