@@ -58,3 +58,11 @@ The app serves three primary user types:
 - **Maintenance Requests:** Guests can report issues directly
 - **Staff Assignment:** Assign tasks to specific maintenance staff
 - **In-App Notifications:** Push notifications for important updates
+
+---
+
+## 🛠️ My Approach
+### Development Philosophy
+The development of this hostel management application follows industry best practices, focusing on scalability, security, and user experience. The architecture is designed to handle both small hostels and large residential facilities with hundreds of rooms.
+### Architecture Pattern
+The app implements a Clean Architecture approach with clear separation between presentation, business logic, and data layers:
