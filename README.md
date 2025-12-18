@@ -43,3 +43,10 @@ The app serves three primary user types:
 - **Guest Database:** Centralized repository of all current and past guests
 
 ### 🏠 Room Management
+- **Room Inventory:** Complete listing of all rooms with details (capacity, amenities, pricing)
+- **Real-Time Availability:** Live view of vacant and occupied rooms
+- **Room Allocation:** Assign rooms to guests with conflict prevention
+- **Room Types:** Categorize rooms (single, double, dormitory, suite)
+- **Occupancy Dashboard:** Visual representation of hostel occupancy rates
+
+### 🔔 Additional Features
