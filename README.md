@@ -10,6 +10,11 @@ Managing a hostel involves coordinating multiple aspects: room allocation, guest
 
 ### The Challenge:
 - Manual guest registration is time-consuming
+- Room availability tracking is complicated
+- Payment records get lost or mismanaged
+- Maintenance requests are not tracked properly
+- Communication between staff and guests is inefficient
+- Reporting and analytics are difficult to generate
 
 ---
 
