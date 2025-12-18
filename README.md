@@ -16,6 +16,22 @@ Managing a hostel involves coordinating multiple aspects: room allocation, guest
 - Communication between staff and guests is inefficient
 - Reporting and analytics are difficult to generate
 
+### The Solution: 
+- Instant digital check-in/check-out process
+- Real-time room availability tracking
+- Automated payment processing and receipt generation
+- Centralized maintenance request management
+- Direct communication channels between staff and residents
+- Comprehensive analytics dashboard for administrators
+
+The app serves three primary user types:
+
+1️⃣ **Administrators:** Full system access and management capabilities
+
+2️⃣ **Staff Members:** Day-to-day operations management
+
+3️⃣ **Guests/Residents:** Self-service portal for bookings and requests
+
 ---
 
 ## ✨ Features
