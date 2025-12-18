@@ -50,3 +50,11 @@ The app serves three primary user types:
 - **Occupancy Dashboard:** Visual representation of hostel occupancy rates
 
 ### 🔔 Additional Features
+- **Online Booking:**  Guests can book rooms through the app
+- **Booking Modifications:** Extend stays or change rooms easily
+- **Payment Tracking:** Record all payments with date and method
+- **Invoice Generation:** Automatic invoice creation for stays
+- **Multiple Payment Methods:** Cash, card, bank transfer tracking
+- **Maintenance Requests:** Guests can report issues directly
+- **Staff Assignment:** Assign tasks to specific maintenance staff
+- **In-App Notifications:** Push notifications for important updates
