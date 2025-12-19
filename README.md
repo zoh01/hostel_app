@@ -188,3 +188,28 @@ The app implements a Clean Architecture approach with clear separation between p
    # Connectivity
    connectivity_plus: ^latest          # Network status
    internet_connection_checker: ^latest # Internet check
+
+---
+
+## ⚙️ How It Works
+1. **User Authentication Flow**
+   ```bash
+   App Launch
+    ↓
+   Check Authentication State
+       ↓
+   ├─→ Not Authenticated ──→ Login Screen
+   │                             ↓
+   │                        Enter Credentials
+   │                             ↓
+   │                        Firebase Auth
+   │                             ↓
+   └─→ Authenticated ──────→ Check User Role
+                                 ↓
+           ┌─────────────────────┼─────────────────────┐
+           ↓                     ↓                     ↓
+      Admin Dashboard      Staff Dashboard      Guest Dashboard
+
+---
+
+## 📱 App Preview
