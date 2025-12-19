@@ -134,3 +134,8 @@ The app implements a Clean Architecture approach with clear separation between p
     │       └── booking_provider.dart
     │
     └── main.dart                      # Application entry point
+
+## 🔧 Tools and Libraries Used
+1. **Core Technologies**
+   - **Flutter SDK** (3.X+) - UI framework for building natively compiled applications
+   - **Dart** (3.X+) - Programming language optimized for building mobile, desktop, and web apps
