@@ -136,10 +136,10 @@ The app implements a Clean Architecture approach with clear separation between p
     └── main.dart                      # Application entry point
 
 ## 🔧 Tools and Libraries Used
-1. ## Core Technologies
+1. **Core Technologies**
    - **Flutter SDK** (3.X+) - UI framework for building natively compiled applications
    - **Dart** (3.X+) - Programming language optimized for building mobile, desktop, and web apps
-2. ## Backend & Database
+2. **Backend & Database**
    ```bash
    # Firebase Services
    firebase_core: ^latest              # Firebase initialization
@@ -148,10 +148,43 @@ The app implements a Clean Architecture approach with clear separation between p
    firebase_storage: ^latest           # File storage
    firebase_messaging: ^latest         # Push notifications
    cloud_functions: ^latest            # Serverless functions
-3. ## State Management
+3. **State Management**
    ```bash
    provider: ^latest                   # State management solution
    # OR
    riverpod: ^latest                   # Advanced state management
    # OR
    bloc: ^latest                       # BLoC pattern implementation
+4. **UI & Design**
+   ```bash
+   # UI Components
+   google_fonts: ^latest               # Custom fonts
+   flutter_svg: ^latest                # SVG support
+   cached_network_image: ^latest       # Image caching
+   shimmer: ^latest                   # Loading animations
+   flutter_slidable: ^latest          # Swipeable list items
+   card_swiper: ^latest               # Card swiping
+   animations: ^latest                # Custom animations
+   
+   # Date & Time
+   intl: ^latest                      # Internationalization
+   table_calendar: ^latest            # Calendar widget
+   syncfusion_flutter_calendar: ^latest # Advanced calendar
+5. **Utilities**
+   ```bash
+   # Data Handling
+   uuid: ^latest                       # Unique ID generation
+   pdf: ^latest                        # PDF generation
+   path_provider: ^latest             # File system access
+   file_picker: ^latest               # File selection
+   image_picker: ^latest              # Image selection
+   
+   # Networking & Storage
+   dio: ^latest                        # HTTP client
+   shared_preferences: ^latest         # Local storage
+   hive: ^latest                      # Local database
+   sqflite: ^latest                   # SQLite database
+   
+   # Connectivity
+   connectivity_plus: ^latest          # Network status
+   internet_connection_checker: ^latest # Internet check
