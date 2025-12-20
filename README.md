@@ -235,5 +235,9 @@ The app implements a Clean Architecture approach with clear separation between p
 
 ## 🚀 Installation
 ### 📝 Prerequisites
-
+- Flutter SDK (3.0.0 or higher)
+- Dart SDK (3.0.0 or higher)
+- Android Studio / Xcode / VS Code
+- Firebase account with project setup
+- Git installed on your machine
 
