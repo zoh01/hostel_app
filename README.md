@@ -214,7 +214,14 @@ The app implements a Clean Architecture approach with clear separation between p
 
 ## 📱 App Preview
 ### Dashboard Screen
-![SignUp_Screen](https://github.com/zoh01/hostel_app/blob/371155ca070adeea68e6ae83e7a9378ce4f846e1/hostel1.jpg)
+![Dashboard_Screen](https://github.com/zoh01/hostel_app/blob/371155ca070adeea68e6ae83e7a9378ce4f846e1/hostel1.jpg)
 
 ### SignUp Screen
 ![SignUp_Screen](https://github.com/zoh01/hostel_app/blob/371155ca070adeea68e6ae83e7a9378ce4f846e1/hostel3.jpg)
+
+### Login Screen
+![Login_Screen](https://github.com/zoh01/hostel_app/blob/e382138214f79ff4dbe1a4acda1d1bc17e7e353c/hostel2.jpg)
+
+### Profile Screen
+![Login_Screen](https://github.com/zoh01/hostel_app/blob/e382138214f79ff4dbe1a4acda1d1bc17e7e353c/hostel4.jpg)
+
