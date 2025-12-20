@@ -241,3 +241,20 @@ The app implements a Clean Architecture approach with clear separation between p
 - Firebase account with project setup
 - Git installed on your machine
 
+**STEPS TO RUN**
+1. Clone the Repository
+   ```bash
+   git clone https://github.com/zoh01/hostel_app.git
+   cd hostel_app
+2. Install Dependencies
+   ```bash
+   flutter pub get
+3. Firebase Configuration
+   **Create a Firebase Project:**
+   1. Go to Firebase Console
+   2. Create a new project named "Hostel Management"
+   3. Enable the following services:
+      - Authentication (Email/Password)
+      - Cloud Firestore
+      - Cloud Storage
+      - Cloud Messaging
