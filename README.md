@@ -223,5 +223,10 @@ The app implements a Clean Architecture approach with clear separation between p
 ![Login_Screen](https://github.com/zoh01/hostel_app/blob/e382138214f79ff4dbe1a4acda1d1bc17e7e353c/hostel2.jpg)
 
 ### Profile Screen
-![Login_Screen](https://github.com/zoh01/hostel_app/blob/e382138214f79ff4dbe1a4acda1d1bc17e7e353c/hostel4.jpg)
+![Profile_Screen](https://github.com/zoh01/hostel_app/blob/e382138214f79ff4dbe1a4acda1d1bc17e7e353c/hostel4.jpg)
+
+### Available Rooms Screen
+![Available_Rooms_Screen](https://github.com/zoh01/hostel_app/blob/e7c4defe9585d4d0de988e26e1cf3ff7c429a5f2/hostel6.jpg)
+
+### Change Request Screen
 
