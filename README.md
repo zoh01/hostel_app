@@ -230,3 +230,10 @@ The app implements a Clean Architecture approach with clear separation between p
 
 ### Change Request Screen
 ![Change_Request_Screen](https://github.com/zoh01/hostel_app/blob/e7c4defe9585d4d0de988e26e1cf3ff7c429a5f2/hostel7.jpg)
+
+---
+
+## 🚀 Installation
+### 📝 Prerequisites
+
+
