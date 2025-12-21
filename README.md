@@ -262,10 +262,10 @@ The app implements a Clean Architecture approach with clear separation between p
 ---
 
 ## 🚀 Future Enhancement & Ideas
-- 🥽 AR visualization feature for room previews
-- 🤖 AI-powered design recommendations
-- 📱 Social sharing capabilities
+- 🥽 AI-powered demand forecasting
+- 🤖 Dynamic pricing based on occupancy
+- 📱 Integration with booking platforms (Booking.com, Hostelworld)
 - 🛍️ Designer marketplace
-- 🏠 3D room modeling
-- 🎨 Color palette generator
-- 📦 Material selection tools
+- 🏠 Mobile POS system for cafe/shop
+- 🎨 Biometric authentication
+- 📦 Virtual tour of rooms
