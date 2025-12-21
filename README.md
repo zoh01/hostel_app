@@ -269,3 +269,26 @@ The app implements a Clean Architecture approach with clear separation between p
 - 🏠 Mobile POS system for cafe/shop
 - 🎨 Biometric authentication
 - 📦 Virtual tour of rooms
+
+--- 
+
+## 🤝 Contributing
+Contributions make the open-source community an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+---
+
+## 👤 Author
+**Adebayo Wariz**  
+
+## 📧 Contact
+Whatsapp: +234 702 513 6608
+
+Email: adebayozoh@gmail.com
+
+LinkedIn: https://www.linkedin.com/in/adebayo-wariz-a8ab9a310/
+
+GitHub: [https://github.com/zoh01](https://github.com/zoh01)
+
+Project Link: [https://github.com/zoh01/interior_design](https://github.com/zoh01/interior_design)
+
+---
