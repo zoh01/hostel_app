@@ -258,3 +258,14 @@ The app implements a Clean Architecture approach with clear separation between p
       - Cloud Firestore
       - Cloud Storage
       - Cloud Messaging
+     
+---
+
+## 🚀 Future Enhancement & Ideas
+- 🥽 AR visualization feature for room previews
+- 🤖 AI-powered design recommendations
+- 📱 Social sharing capabilities
+- 🛍️ Designer marketplace
+- 🏠 3D room modeling
+- 🎨 Color palette generator
+- 📦 Material selection tools
