@@ -147,18 +147,18 @@ The app implements a Clean Architecture approach with clear separation between p
           └── main.dart                      # Application entry point
 
 ## 🔧 Tools and Libraries Used
-1. **Core Technologies**
+1. ### Core Technologies
    - **Flutter SDK** (3.X+) - UI framework for building natively compiled applications
    - **Dart** (3.X+) - Programming language optimized for building mobile, desktop, and web apps
-2. **Backend & Database**
-   ```bash
-   # Firebase Services
-   firebase_core: ^latest              # Firebase initialization
-   firebase_auth: ^latest              # Authentication
-   cloud_firestore: ^latest            # Real-time database
-   firebase_storage: ^latest           # File storage
-   firebase_messaging: ^latest         # Push notifications
-   cloud_functions: ^latest            # Serverless functions
+2. ### Backend & Database
+   
+         # Firebase Services
+         firebase_core: ^latest              # Firebase initialization
+         firebase_auth: ^latest              # Authentication
+         cloud_firestore: ^latest            # Real-time database
+         firebase_storage: ^latest           # File storage
+         firebase_messaging: ^latest         # Push notifications
+         cloud_functions: ^latest            # Serverless functions
 3. **State Management**
    ```bash
    provider: ^latest                   # State management solution
