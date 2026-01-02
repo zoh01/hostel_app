@@ -254,12 +254,12 @@ The app implements a Clean Architecture approach with clear separation between p
 
 **STEPS TO RUN**
 1. Clone the Repository
-   ```bash
-   git clone https://github.com/zoh01/hostel_app.git
-   cd hostel_app
+   
+         git clone https://github.com/zoh01/hostel_app.git
+         cd hostel_app
 2. Install Dependencies
-   ```bash
-   flutter pub get
+   
+         flutter pub get
 3. Firebase Configuration
    **Create a Firebase Project:**
    1. Go to Firebase Console
