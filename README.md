@@ -203,23 +203,23 @@ The app implements a Clean Architecture approach with clear separation between p
 ---
 
 ## ⚙️ How It Works
-1. **User Authentication Flow**
-   ```bash
-   App Launch
-    ↓
-   Check Authentication State
-       ↓
-   ├─→ Not Authenticated ──→ Login Screen
-   │                             ↓
-   │                        Enter Credentials
-   │                             ↓
-   │                        Firebase Auth
-   │                             ↓
-   └─→ Authenticated ──────→ Check User Role
-                                 ↓
-           ┌─────────────────────┼─────────────────────┐
-           ↓                     ↓                     ↓
-      Admin Dashboard      Staff Dashboard      Guest Dashboard
+1. ### User Authentication Flow
+   
+         App Launch
+          ↓
+         Check Authentication State
+             ↓
+         ├─→ Not Authenticated ──→ Login Screen
+         │                             ↓
+         │                        Enter Credentials
+         │                             ↓
+         │                        Firebase Auth
+         │                             ↓
+         └─→ Authenticated ──────→ Check User Role
+                                       ↓
+                 ┌─────────────────────┼─────────────────────┐
+                 ↓                     ↓                     ↓
+            Admin Dashboard      Staff Dashboard      Guest Dashboard
 
 ---
 
