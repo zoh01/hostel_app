@@ -182,23 +182,23 @@ The app implements a Clean Architecture approach with clear separation between p
          table_calendar: ^latest            # Calendar widget
          syncfusion_flutter_calendar: ^latest # Advanced calendar
 5. **Utilities**
-   ```bash
-   # Data Handling
-   uuid: ^latest                       # Unique ID generation
-   pdf: ^latest                        # PDF generation
-   path_provider: ^latest             # File system access
-   file_picker: ^latest               # File selection
-   image_picker: ^latest              # Image selection
    
-   # Networking & Storage
-   dio: ^latest                        # HTTP client
-   shared_preferences: ^latest         # Local storage
-   hive: ^latest                      # Local database
-   sqflite: ^latest                   # SQLite database
-   
-   # Connectivity
-   connectivity_plus: ^latest          # Network status
-   internet_connection_checker: ^latest # Internet check
+         # Data Handling
+         uuid: ^latest                       # Unique ID generation
+         pdf: ^latest                        # PDF generation
+         path_provider: ^latest             # File system access
+         file_picker: ^latest               # File selection
+         image_picker: ^latest              # Image selection
+         
+         # Networking & Storage
+         dio: ^latest                        # HTTP client
+         shared_preferences: ^latest         # Local storage
+         hive: ^latest                      # Local database
+         sqflite: ^latest                   # SQLite database
+         
+         # Connectivity
+         connectivity_plus: ^latest          # Network status
+         internet_connection_checker: ^latest # Internet check
 
 ---
 
