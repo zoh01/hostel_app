@@ -79,72 +79,72 @@ The development of this hostel management application follows industry best prac
 The app implements a Clean Architecture approach with clear separation between presentation, business logic, and data layers:
 
 1. Clean Architecture Implementation
-   ```bash
-   lib/
-    ├── core/                          # Core utilities and shared resources
-    │   ├── constants/                 # App-wide constants
-    │   │   ├── app_colors.dart
-    │   │   ├── app_strings.dart
-    │   │   └── app_routes.dart
-    │   ├── themes/                    # App theming
-    │   │   ├── light_theme.dart
-    │   │   └── dark_theme.dart
-    │   ├── utils/                     # Helper functions
-    │   │   ├── validators.dart
-    │   │   ├── date_formatter.dart
-    │   │   └── pdf_generator.dart
-    │   └── errors/                    # Error handling
-    │       └── exceptions.dart
-    │
-    ├── data/                          # Data layer
-    │   ├── models/                    # Data models
-    │   │   ├── user_model.dart
-    │   │   ├── room_model.dart
-    │   │   ├── booking_model.dart
-    │   │   └── payment_model.dart
-    │   ├── repositories/              # Repository implementations
-    │   │   ├── auth_repository.dart
-    │   │   ├── room_repository.dart
-    │   │   └── booking_repository.dart
-    │   └── services/                  # External services
-    │       ├── firebase_service.dart
-    │       └── notification_service.dart
-    │
-    ├── domain/                        # Business logic layer
-    │   ├── entities/                  # Business entities
-    │   ├── repositories/              # Repository interfaces
-    │   └── usecases/                  # Business use cases
-    │       ├── create_booking.dart
-    │       ├── assign_room.dart
-    │       └── process_payment.dart
-    │
-    ├── presentation/                  # Presentation layer
-    │   ├── screens/                   # App screens
-    │   │   ├── auth/                  # Authentication screens
-    │   │   │   ├── login_screen.dart
-    │   │   │   └── register_screen.dart
-    │   │   ├── admin/                 # Admin dashboard
-    │   │   │   ├── dashboard_screen.dart
-    │   │   │   ├── rooms_screen.dart
-    │   │   │   ├── bookings_screen.dart
-    │   │   │   └── reports_screen.dart
-    │   │   ├── staff/                 # Staff interface
-    │   │   │   ├── check_in_screen.dart
-    │   │   │   └── maintenance_screen.dart
-    │   │   └── guest/                 # Guest portal
-    │   │       ├── home_screen.dart
-    │   │       ├── booking_screen.dart
-    │   │       └── profile_screen.dart
-    │   ├── widgets/                   # Reusable widgets
-    │   │   ├── room_card.dart
-    │   │   ├── booking_card.dart
-    │   │   └── custom_button.dart
-    │   └── providers/                 # State management
-    │       ├── auth_provider.dart
-    │       ├── room_provider.dart
-    │       └── booking_provider.dart
-    │
-    └── main.dart                      # Application entry point
+   
+         lib/
+          ├── core/                          # Core utilities and shared resources
+          │   ├── constants/                 # App-wide constants
+          │   │   ├── app_colors.dart
+          │   │   ├── app_strings.dart
+          │   │   └── app_routes.dart
+          │   ├── themes/                    # App theming
+          │   │   ├── light_theme.dart
+          │   │   └── dark_theme.dart
+          │   ├── utils/                     # Helper functions
+          │   │   ├── validators.dart
+          │   │   ├── date_formatter.dart
+          │   │   └── pdf_generator.dart
+          │   └── errors/                    # Error handling
+          │       └── exceptions.dart
+          │
+          ├── data/                          # Data layer
+          │   ├── models/                    # Data models
+          │   │   ├── user_model.dart
+          │   │   ├── room_model.dart
+          │   │   ├── booking_model.dart
+          │   │   └── payment_model.dart
+          │   ├── repositories/              # Repository implementations
+          │   │   ├── auth_repository.dart
+          │   │   ├── room_repository.dart
+          │   │   └── booking_repository.dart
+          │   └── services/                  # External services
+          │       ├── firebase_service.dart
+          │       └── notification_service.dart
+          │
+          ├── domain/                        # Business logic layer
+          │   ├── entities/                  # Business entities
+          │   ├── repositories/              # Repository interfaces
+          │   └── usecases/                  # Business use cases
+          │       ├── create_booking.dart
+          │       ├── assign_room.dart
+          │       └── process_payment.dart
+          │
+          ├── presentation/                  # Presentation layer
+          │   ├── screens/                   # App screens
+          │   │   ├── auth/                  # Authentication screens
+          │   │   │   ├── login_screen.dart
+          │   │   │   └── register_screen.dart
+          │   │   ├── admin/                 # Admin dashboard
+          │   │   │   ├── dashboard_screen.dart
+          │   │   │   ├── rooms_screen.dart
+          │   │   │   ├── bookings_screen.dart
+          │   │   │   └── reports_screen.dart
+          │   │   ├── staff/                 # Staff interface
+          │   │   │   ├── check_in_screen.dart
+          │   │   │   └── maintenance_screen.dart
+          │   │   └── guest/                 # Guest portal
+          │   │       ├── home_screen.dart
+          │   │       ├── booking_screen.dart
+          │   │       └── profile_screen.dart
+          │   ├── widgets/                   # Reusable widgets
+          │   │   ├── room_card.dart
+          │   │   ├── booking_card.dart
+          │   │   └── custom_button.dart
+          │   └── providers/                 # State management
+          │       ├── auth_provider.dart
+          │       ├── room_provider.dart
+          │       └── booking_provider.dart
+          │
+          └── main.dart                      # Application entry point
 
 ## 🔧 Tools and Libraries Used
 1. **Core Technologies**
