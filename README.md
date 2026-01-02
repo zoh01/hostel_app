@@ -159,28 +159,28 @@ The app implements a Clean Architecture approach with clear separation between p
          firebase_storage: ^latest           # File storage
          firebase_messaging: ^latest         # Push notifications
          cloud_functions: ^latest            # Serverless functions
-3. **State Management**
-   ```bash
-   provider: ^latest                   # State management solution
-   # OR
-   riverpod: ^latest                   # Advanced state management
-   # OR
-   bloc: ^latest                       # BLoC pattern implementation
-4. **UI & Design**
-   ```bash
-   # UI Components
-   google_fonts: ^latest               # Custom fonts
-   flutter_svg: ^latest                # SVG support
-   cached_network_image: ^latest       # Image caching
-   shimmer: ^latest                   # Loading animations
-   flutter_slidable: ^latest          # Swipeable list items
-   card_swiper: ^latest               # Card swiping
-   animations: ^latest                # Custom animations
+3. ### State Management
    
-   # Date & Time
-   intl: ^latest                      # Internationalization
-   table_calendar: ^latest            # Calendar widget
-   syncfusion_flutter_calendar: ^latest # Advanced calendar
+         provider: ^latest                   # State management solution
+         # OR
+         riverpod: ^latest                   # Advanced state management
+         # OR
+         bloc: ^latest                       # BLoC pattern implementation
+4. ### UI & Design
+   
+         # UI Components
+         google_fonts: ^latest               # Custom fonts
+         flutter_svg: ^latest                # SVG support
+         cached_network_image: ^latest       # Image caching
+         shimmer: ^latest                   # Loading animations
+         flutter_slidable: ^latest          # Swipeable list items
+         card_swiper: ^latest               # Card swiping
+         animations: ^latest                # Custom animations
+   
+         # Date & Time
+         intl: ^latest                      # Internationalization
+         table_calendar: ^latest            # Calendar widget
+         syncfusion_flutter_calendar: ^latest # Advanced calendar
 5. **Utilities**
    ```bash
    # Data Handling
